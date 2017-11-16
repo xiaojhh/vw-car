@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+ul{
+width: 500px;
+margin: 0 auto;
+}
+li{
+list-style:none;
+float:left;
+width:25%;
+height:30px;
+margin-right: 20px;
+text-align: center;
+}
+.active{
+background:red; 
+}
+</style>
+<body>
+<!-- <ul class="nav nav-tabs" id ="d1" oncli>
+<li id='d2' class="active">
+<a href="javascript:void(0)">预售中</ a>
+</li>
+<li id='d3'>
+<a href="javascript:void(0)">开课中</ a>
+</li>
+<li id='d4'>
+<a href="javascript:void(0)">已结束</ a>
+</li>
+</ul> -->
+
+<ul class="nav nav-tabs" id ="d1">
+    <li  id='d2' class="active" onclick="change(0)"><a href="javascript:void(0)">预售中</ a></li>
+    <li id='d3' onclick="change(1)"><a href="javascript:void(0)">开课中</ a></li>
+    <li id='d4' onclick="change(2)"><a href="javascript:void(0)">已结束</ a></li>
+</ul>
+
+</body>
+<script>
+//获取元素
+function change(){
+        var oUl = document.getElementById("d1");
+        var aLi = oUl.getElementsByTagName("li")
+        for(var i =0;i<aLi.length;i++){
+        aLi[i].onclick = function(){
+            for(var j =0;j<aLi.length;j++){ 
+               aLi[j].className = ""; 
+            }
+        this.className= "active";
+        }
+    }
+}
+
+
+</script>
+</html>

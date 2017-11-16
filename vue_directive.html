@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-focus v-model="color">
+        <button v-myon:click="a">haha</button>
+        <p v-demo:background.big="color">今天是个好日子</p>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        // 指令是用来操作dom v-on v-bind v-text v-for 
+        // 在vue 里带有 v-开头的都是指令
+        // 为什么要自定义指令？更方便的操作dom，代码复用便于维护
+        // 什么情况下需要自定义指令：现有指令无法满足业务需求的时候
+        // Vue.directive 组件内部 directives:{}
+    
+        Vue.directive("focus",{
+            inserted:function(el){
+               //el 参数的dom 元素
+               // 在插入节点的时候。执行一次
+                el.focus();
+            }
+        })
+
+        Vue.directive("myon",{
+            bind:function(el,binding){
+                console.log(binding,111);
+                let that = this;
+                el["on"+binding.arg]=function(){
+                    binding.value()
+                }
+            }
+        })
+        Vue.directive("demo",{
+            bind:function(el,binding,vnode){
+                //被创建出来的时候会触发，只执行一次
+                console.log('bind');
+                el.innerHTML+="!!!",
+                console.log("vnode",vnode);
+            },
+            inserted:function(el,binding){
+                // 插入到节点 只执行一次
+                console.log("inserted");
+                console.log(binding,12);
+                if(binding.modifiers.big){
+                    el.style[binding.arg]=binding.value
+                }
+                
+            },
+            update:function(el,binding){
+                console.log("update",1231);
+                console.log(binding.value);
+                console.log(binding.expression);
+                el.style[binding.arg] = binding.value;
+            },
+            componentUpdated:function(){
+                //当实例及其子组件更新完成的时候才会执行
+                console.log("componentUpdated");
+            },
+            unbind:function(){
+                console.log("unbind")
+            }
+        })
+
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                //组件需要retuan
+                color:"red"
+            },
+            methods:{
+                a(){
+                    alert(1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
