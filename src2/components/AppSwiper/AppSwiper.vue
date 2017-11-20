@@ -34,7 +34,7 @@ export default {
       this.getBanners()
   },
   updated () {
-      console.log(this.banners);
+    //   console.log(this.banners);
       new Swiper(this.$refs.container,{
           loop:true,
           autoplay:true

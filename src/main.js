@@ -11,7 +11,9 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
 
+// import Zepto from "zepto"
 
+// Vue.use(Zepto)
 // or import all icons if you don't care about bundle size
 import 'vue-awesome/icons'
 
@@ -28,13 +30,13 @@ import 'animate.css'
 
 // swiper.css
 
-import 'swiper/dist/css/swiper.min.css'
+import 'swiper/dist/css/swiper.css'
 
 
 Vue.config.productionTip = false//去掉生产提示
 
 import store from './vuex/store'
-
+import "./styles/main.css"
 /* eslint-disable no-new */
 new Vue({//根实例
   el: '#app',

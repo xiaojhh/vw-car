@@ -65,6 +65,10 @@ module.exports = {
       {
         test:/\.scss$/,
         loaders:["style","css","sass"]
+      },
+      {
+        test:require.resolve("zepto"),
+        loader: 'exports-loader?window.Zepto!script-loader'
       }
     ]
   }
